@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sneaker.name.capitalize %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sneaker.description %>
+</p>
+
+<% if user_signed_in? %>
+  <%= render 'charge_form', sneaker: @sneaker, user: current_user %>
+<% else %>
+  <%= link_to new_user_registration_path, class: "stripe-button-el" do %>
+    <span style="display: block; min-height: 30px;">Pay with Card</span>
+  <% end %>
+<% end %>
+
+
+<%= link_to 'Edit', edit_sneaker_path(@sneaker) %> |
+<%= link_to 'Back', sneakers_path %>
